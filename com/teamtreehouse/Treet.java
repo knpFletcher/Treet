@@ -52,4 +52,23 @@ public class Treet implements Comparable<Treet>, Serializable {
     String[] words = mDescription.toLowerCase().split("[^\\w#@']+");
     return Arrays.asList(words);
   }
+
+  public List<String> getHashTags(){
+    return getWordsPrefixedWith("#");
+  }
+
+  public List<String> getMentions(){
+    return getWordsPrefixedWith("@");
+  }
+
+  private List<String> getWordsPrefixedWith(String prefix){
+    List<String> results = new ArrayList<String>();
+    for(String word : getWords()){
+      if(word.startsWith(prefix)){
+        results.add(word);
+      }
+    }
+    return results;
+  }
+
 }
